@@ -4,7 +4,7 @@ This is an example of a wso2 EI/MI proxy service configuration in XML that inclu
 
 ## Sample request
 ```
-curl --location 'http://localhost:8290/services/SampleIterateProxy' \
+curl --location 'http://localhost:8290/services/SampleForeachProxy' \
 --header 'Content-Type: application/json' \
 --data '{
    "items": [
