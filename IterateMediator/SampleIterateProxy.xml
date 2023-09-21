@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="SampleIterateProxy"
+       transports="http"
+       startOnLoad="true">
+   <target>
+      <inSequence>
+         <!-- <log level="custom">
+            <property name=" ************ " value=" Before Iterate " />
+            <property name=" message body" expression="json-eval($.)" />
+         </log> -->
+         <!-- Iterate through a JSON array -->
+         <iterate expression="json-eval($.items)" sequential="false" continueParent="true">
+            <target>
+               <sequence>
+                  
+                  <!-- Process each item in the array -->
+                  <log level="custom">
+                     <!-- <property name=" message body" expression="json-eval($.)" /> -->
+                     <property name="Item name" expression="json-eval($.name)" />
+                     <property name="Item description" expression="json-eval($.description)"/>
+                  </log>
+                  <drop/>
+                  <!-- Add your processing logic here for each item -->
+               </sequence>
+            </target>
+         </iterate>
+         <!-- <log level="custom">
+            <property name=" ************ " value=" After Iterate " />
+            <property name=" message body" expression="json-eval($.)" />
+         </log> -->
+         <respond/>
+      </inSequence>
+      <outSequence>
+         <!-- Handle the response if needed -->
+         <send />
+      </outSequence>
+   </target>
+   <description/>
+</proxy>
