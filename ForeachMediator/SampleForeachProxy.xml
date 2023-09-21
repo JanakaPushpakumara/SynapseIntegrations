@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="SampleForeachProxy"
+       transports="http"
+       startOnLoad="true">
+   <target>
+      <inSequence>
+         <log level="custom">
+            <property name=" ************ " value=" Before foreach " />
+            <property name=" message body" expression="json-eval($.)" />
+         </log>
+         <!-- Iterate through the "items" array using a <foreach> mediator -->
+         <foreach expression="json-eval($.items)" sequential="true">
+            <sequence>
+               <!-- Process each item in the array -->
+               <log level="custom">
+                  <!-- <property name=" message body" expression="json-eval($.)" /> -->
+                  <property name="Item name" expression="json-eval($.name)" />
+                  <property name="Item description" expression="json-eval($.description)"/>
+               </log>
+               <!-- Add your processing logic here for each item -->
+            </sequence>
+         </foreach>
+         <log level="custom">
+            <property name=" ************ " value=" After foreach " />
+            <property name=" message body" expression="json-eval($.)" />
+         </log>
+         <respond/>
+      </inSequence>
+      <outSequence>
+         <!-- Handle the response if needed -->
+         <send />
+      </outSequence>
+   </target>
+   <description/>
+</proxy>
