@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="SampleEchoProxy"
+       transports="http"
+       startOnLoad="true">
+   <target>
+      <inSequence>
+         <log level="custom">
+            <property name="EchoProxy" value="Received request" />
+         </log>
+         <!-- Pass the incoming request directly to the outSequence -->
+         <loopback/>
+      </inSequence>
+      <outSequence>
+         <!-- Log the response before sending it back -->
+         <log level="custom">
+            <property name="EchoProxy" value="Sending back response" />
+         </log>
+         <!-- Send the response back to the client -->
+         <send />
+      </outSequence>
+   </target>
+   <description/>
+</proxy>
