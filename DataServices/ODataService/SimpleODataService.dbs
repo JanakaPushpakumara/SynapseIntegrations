@@ -1,0 +1,8 @@
+<data name="simple-data-service" transports="http https local">
+   <config enableOData="true" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/CompanyAccounts</property>
+      <property name="username">root</property>
+      <property name="password">root</property>
+   </config>
+</data>
