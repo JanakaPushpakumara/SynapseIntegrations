@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="EchoAPI" context="/echo">
+	<resource methods="GET" uri-template="/{message}">
+		<inSequence>
+			<property name="message" expression="get-property('uri.var.message')" scope="default" type="STRING"/>
+			<log level="full">
+				<property name="EchoMessage" expression="get-property('message')"/>
+			</log>
+			<respond/>
+		</inSequence>
+		<outSequence/>
+		<faultSequence/>
+	</resource>
+</api>
