@@ -20,5 +20,5 @@ The <respond/> mediator should be used in this context to send the response back
 
 ## Sample request
 ```
-curl --location --request GET 'http://localhost:8290/services/SampleEchoAPI'
+curl --location --request POST 'http://localhost:8280/echo/test'
 ```

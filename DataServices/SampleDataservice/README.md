@@ -19,7 +19,7 @@ INSERT INTO Employees (EmployeeNumber, FirstName, LastName, Email, Salary) VALUE
 INSERT INTO Employees (EmployeeNumber, FirstName, LastName, Email, Salary) VALUES (2, "Jane", "Doe", "jane.doe@example.com", "60000");
 INSERT INTO Employees (EmployeeNumber, FirstName, LastName, Email, Salary) VALUES (3, "Bob", "Smith", "bob.smith@example.com", "70000");
 ```
-4. Navigate to the <MI-Home>/repository/deployment/server/synapse-configs/default/dataservices directory and create a new file named RDBMSDataService.dbs. Add the following content to the file.
+4. Navigate to the <MI-Home>/repository/deployment/server/dataservices directory and create a new file named RDBMSDataService.dbs. Add the following content to the file.
 ```xml
 <data enableBatchRequests="true" name="RDBMSDataService" serviceGroup="" serviceNamespace="">
     <description/>
