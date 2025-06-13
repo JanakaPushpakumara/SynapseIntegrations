@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="JMSPublisherProxy"
+       startOnLoad="true"
+       statistics="disable"
+       trace="disable"
+       transports="http,https">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <property action="remove" name="TRANSPORT_HEADERS" scope="axis2"/>
+            <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+            <property name="TEST_JMS_HEADER" scope="transport" value="TEST.QUEUE"/>
+            <log level="custom">
+                <property expression="$trp:TEST_JMS_HEADER" name="JMSPublisherProxy Set JMSHeader TEST_JMS_HEADER "/>
+            </log>
+
+            <log level="custom">
+                <property name="JMSPublisherProxy" value="Publishing the JMS message .... "/>
+            </log>
+            <call>
+                <endpoint>
+                    <address uri="jms:/SMSStore?transport.jms.ConnectionFactory=myQueueConnectionFactory&amp;transport.jms.DestinationType=queue&amp;transport.jms.Destination=SMSStore"/>
+                </endpoint>
+            </call>
+            <log level="custom">
+                <property name="JMSPublisherProxy" value="JMS message published"/>
+            </log>
+            <drop/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+    </target>
+    <description/>
+</proxy>

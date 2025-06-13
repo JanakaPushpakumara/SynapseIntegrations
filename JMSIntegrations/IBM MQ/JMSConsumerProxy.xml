@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="JMSConsumerProxy"
+       startOnLoad="true"
+       statistics="disable"
+       trace="disable"
+       transports="jms">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <log level="custom">
+                <property name="JMSConsumerProxy get JMSHeader TEST_JMS_HEADER " expression="$trp:TEST_JMS_HEADER" />
+            </log>
+            <log level="custom">
+                <property name="JMSConsumerProxy" value="JMS message Consumed "/>
+            </log>
+            <drop/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+    </target>
+    <parameter name="transport.jms.ContentType">
+        <rules>
+            <jmsProperty>contentType</jmsProperty>
+            <default>application/xml</default>
+        </rules>
+    </parameter>
+    <parameter name="transport.jms.ConnectionFactory">myQueueConnectionFactory</parameter>
+    <parameter name="transport.jms.DestinationType">queue</parameter>
+    <parameter name="transport.jms.Destination">SMSStore</parameter>
+    <description/>
+</proxy>
