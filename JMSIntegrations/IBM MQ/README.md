@@ -31,6 +31,15 @@ excluding IBM MQ specific configurations.
     make build-devserver COMMAND=docker
     docker run -e LICENSE=accept -e MQ_QMGR_NAME=QM1 -e MQ_ADMIN_PASSWORD=passw0rd -p 1414:1414 -p 9443:9443 ibm-mqadvanced-server-dev:9.4.2.0-arm64
     ```
+   Create a destination queue in the IBM MQ broker.
+   <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start;">
+     <img src="img_2.png" style="max-width: 100%; height: auto;" width="250"/>
+     <img src="img_4.png" style="max-width: 100%; height: auto;" width="250"/>
+     <img src="img_1.png" style="max-width: 100%; height: auto;" width="250"/>
+     <img src="img_5.png" style="max-width: 100%; height: auto;" width="250"/>
+     <img src="img.png" style="max-width: 100%; height: auto;" width="250"/>
+   </div>
+   
 ## 1. Configure .bindigs file.
 You need to create a `.bindings` file that contains the connection factory and destination information for your JMS broker.
 You can use the IBM Explorer to create this file, 
@@ -45,7 +54,6 @@ mvn clean compile exec:java \
 -Dexec.mainClass="com.example.mq.MQBindingsGenerator" \
 -Djndi.provider.url=file:/Users/janakap/WSO2/SynapseIntegrations/wso2mi-4.2.0/conf/jndidirectory
 ```
-
 ## 2. Enable JMS Transport in deployment.toml
 Update the deployment.toml file located in the <MI_HOME>/conf directory to enable JMS transport sender and listener.
 
